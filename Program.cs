@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using rest_api_labb_minimalapi.Data;
 
 namespace rest_api_labb_minimalapi
 {
@@ -7,14 +9,14 @@ namespace rest_api_labb_minimalapi
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddDbContext<RestLabbDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DB_CONNECTION_STRING")));
+
             // Add services to the container.
             builder.Services.AddAuthorization();
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
-
-            builder.Services.AddDbContext<RestLabbDb>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DB_CONNECTION_STRING")));
 
             var app = builder.Build();
 

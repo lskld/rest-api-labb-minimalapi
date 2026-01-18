@@ -46,33 +46,33 @@ namespace rest_api_labb_minimalapi.Data
 
             //Seed People
             modelBuilder.Entity<Person>().HasData(
-                new Person {FirstName = "Anna", LastName = "Svensson", PhoneNumber = "070-1234567" },
-                new Person {FirstName = "Erik", LastName = "Johansson", PhoneNumber = "070-2345678" },
-                new Person {FirstName = "Maria", LastName = "Nilsson", PhoneNumber = "070-3456789" },
-                new Person {FirstName = "Oscar", LastName = "Lindberg", PhoneNumber = "070-4567890" },
-                new Person {FirstName = "Sofia", LastName = "Andersson", PhoneNumber = "070-5678901" }
+                new Person { PersonId = 1, FirstName = "Anna", LastName = "Svensson", PhoneNumber = "070-1234567" },
+                new Person { PersonId = 2, FirstName = "Erik", LastName = "Johansson", PhoneNumber = "070-2345678" },
+                new Person { PersonId = 3, FirstName = "Maria", LastName = "Nilsson", PhoneNumber = "070-3456789" },
+                new Person { PersonId = 4, FirstName = "Oscar", LastName = "Lindberg", PhoneNumber = "070-4567890" },
+                new Person { PersonId = 5, FirstName = "Sofia", LastName = "Andersson", PhoneNumber = "070-5678901" }
             );
 
             //Seed Interests
             modelBuilder.Entity<Interest>().HasData(
-                new Interest {InterestName = "Programming", InterestDescription = "Writing and developing software applications" },
-                new Interest {InterestName = "Photography", InterestDescription = "Capturing moments through a camera lens" },
-                new Interest {InterestName = "Cooking", InterestDescription = "Preparing and experimenting with food recipes" },
-                new Interest {InterestName = "Gaming", InterestDescription = "Playing video games across various platforms" },
-                new Interest {InterestName = "Reading", InterestDescription = "Exploring books and literature" },
-                new Interest {InterestName = "Hiking", InterestDescription = "Walking and exploring nature trails" },
-                new Interest {InterestName = "Music", InterestDescription = "Playing instruments or listening to music" },
-                new Interest {InterestName = "Traveling", InterestDescription = "Visiting new places and experiencing cultures" },
-                new Interest {InterestName = "Gardening", InterestDescription = "Growing plants and maintaining gardens" },
-                new Interest {InterestName = "Fitness", InterestDescription = "Exercising and maintaining physical health" }
+                new Interest { InterestId = 1, InterestName = "Programming", InterestDescription = "Writing and developing software applications" },
+                new Interest { InterestId = 2, InterestName = "Photography", InterestDescription = "Capturing moments through a camera lens" },
+                new Interest { InterestId = 3, InterestName = "Cooking", InterestDescription = "Preparing and experimenting with food recipes" },
+                new Interest { InterestId = 4, InterestName = "Gaming", InterestDescription = "Playing video games across various platforms" },
+                new Interest { InterestId = 5, InterestName = "Reading", InterestDescription = "Exploring books and literature" },
+                new Interest { InterestId = 6, InterestName = "Hiking", InterestDescription = "Walking and exploring nature trails" },
+                new Interest { InterestId = 7, InterestName = "Music", InterestDescription = "Playing instruments or listening to music" },
+                new Interest { InterestId = 8, InterestName = "Traveling", InterestDescription = "Visiting new places and experiencing cultures" },
+                new Interest { InterestId = 9, InterestName = "Gardening", InterestDescription = "Growing plants and maintaining gardens" },
+                new Interest { InterestId = 10, InterestName = "Fitness", InterestDescription = "Exercising and maintaining physical health" }
             );
 
             //Seed Links (connecting to both Person and Interest)
             modelBuilder.Entity<Link>().HasData(
-                new Link {LinkUrl = "https://github.com/anna-codes", PersonId = 1, InterestId = 1 },
-                new Link {LinkUrl = "https://instagram.com/erik-photos", PersonId = 2, InterestId = 2 },
-                new Link {LinkUrl = "https://recipes.com/maria-kitchen", PersonId = 3, InterestId = 3 },
-                new Link {LinkUrl = "https://twitch.tv/anna-gaming", PersonId = 1, InterestId = 4 }
+                new Link { LinkId = 1, LinkUrl = "https://github.com/anna-codes", PersonId = 1, InterestId = 1 },
+                new Link { LinkId = 2, LinkUrl = "https://instagram.com/erik-photos", PersonId = 2, InterestId = 2 },
+                new Link { LinkId = 3, LinkUrl = "https://recipes.com/maria-kitchen", PersonId = 3, InterestId = 3 },
+                new Link { LinkId = 4, LinkUrl = "https://twitch.tv/anna-gaming", PersonId = 1, InterestId = 4 }
             );
 
             //Seed Many-to-Many relationship between Person and Interest
