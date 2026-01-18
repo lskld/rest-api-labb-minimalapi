@@ -1,0 +1,6 @@
+@rest_api_labb_minimalapi_HostAddress = http://localhost:5177
+
+GET {{rest_api_labb_minimalapi_HostAddress}}
+Accept: application/json
+
+###
