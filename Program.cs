@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using rest_api_labb_minimalapi.Data;
 using rest_api_labb_minimalapi.Models.DTOs;
+using rest_api_labb_minimalapi.Models.Entities;
 
 namespace rest_api_labb_minimalapi
 {
@@ -99,8 +100,26 @@ namespace rest_api_labb_minimalapi
                 return Results.Ok($"{person.FirstName} {person.LastName} is now conntected to interest: {interest.InterestName}");
             });
 
-            app.MapPost("/people/{personId}/interests/{interestId}/addlink/{linkUrl}", async (RestLabbDbContext context, int personId, int interestId, [FromBody] string linkUrl) => {
-                throw new NotImplementedException();
+            // 5. Add new link for specific person & interest
+            app.MapPost("/people/{personId}/interests/{interestId}/addlink", async (RestLabbDbContext context, int personId, int interestId, [FromBody] LinkCreateDto dto) => 
+            {
+                var person = await context.People.FirstOrDefaultAsync(p => p.PersonId == personId);
+                var interest = await context.Interests.FirstOrDefaultAsync(i => i.InterestId == interestId);
+
+                if (person is null || interest is null)
+                    return Results.NotFound("Person or interest was not found");
+
+                var newLink = new Link
+                {
+                    LinkUrl = dto.LinkUrl,
+                    PersonId = personId,
+                    InterestId = interestId
+                };
+
+                context.Links.Add(newLink);
+                await context.SaveChangesAsync();
+
+                return Results.Ok("Link added successfully");
             });
 
             app.Run();
