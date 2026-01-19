@@ -65,7 +65,7 @@ namespace rest_api_labb_minimalapi
             });
 
             // 3. Get all links connected to a specific person
-            app.Map("/people/{id}/links", async (RestLabbDbContext context, int id) =>
+            app.MapGet("/people/{id}/links", async (RestLabbDbContext context, int id) =>
             {
                 var person = await context.People
                     .Where(p => p.PersonId == id)
@@ -84,7 +84,7 @@ namespace rest_api_labb_minimalapi
             });
 
             // 4. Connect a person to a new interest
-            app.MapPost("/people/{personId}/connect/interests/{interestId}", async (RestLabbDbContext context, int personId, int interestId) =>
+            app.MapPost("/people/{personId}/interests/{interestId}", async (RestLabbDbContext context, int personId, int interestId) =>
             {
                 var person = await context.People
                     .Include(p => p.Interests)
@@ -101,7 +101,7 @@ namespace rest_api_labb_minimalapi
             });
 
             // 5. Add new link for specific person & interest
-            app.MapPost("/people/{personId}/interests/{interestId}/addlink", async (RestLabbDbContext context, int personId, int interestId, [FromBody] LinkCreateDto dto) => 
+            app.MapPost("/people/{personId}/interests/{interestId}/links", async (RestLabbDbContext context, int personId, int interestId, [FromBody] LinkCreateDto dto) => 
             {
                 var person = await context.People.FirstOrDefaultAsync(p => p.PersonId == personId);
                 var interest = await context.Interests.FirstOrDefaultAsync(i => i.InterestId == interestId);
